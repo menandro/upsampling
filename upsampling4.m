@@ -1,6 +1,21 @@
 %input image
-gray = im2double(rgb2gray(imread('C:\Users\hirat\Desktop\0129\ivdata_faro\image_02\data\im4.png')));
-gray = im2double(rgb2gray(imread('C:\Users\hirat\Desktop\0129\ivdata_kitti\image_02\0000000325.png')));
+
+%% faro
+fname = 'im4';
+semanticName = 'sem4';
+mainfolder = 'h:/data_ivdata/';
+
+%% kitti
+% fname = '0000000325';
+% mainfolder = 'data_kitti_raw/2011_09_26/2011_09_26_drive_0093_sync/';
+
+
+gray = im2double(rgb2gray(imread(strcat(mainfolder, 'image_02/data/', fname, '.png'))));
+flow = double(imread(strcat(mainfolder, 'output/depth/', fname, '.png')))/256.0;
+depth = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
+velo_raw = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
+sem = im2double(rgb2gray(imread(strcat(mainfolder, 'semantic/', semanticName, '.png'))));
+
 
 %calculate gradient
 gray_ = imfilter(gray, fspecial('gaussian',[3 3], 0.5));
@@ -10,19 +25,6 @@ G_y = G_x';
 grad_x = imfilter(gray_, G_x, 'replicate');
 grad_y = imfilter(gray_, G_y, 'replicate');
 grad = sqrt(grad_x.^2 + grad_y.^2);
-
-flow = (double(imread('C:\Users\hirat\Desktop\0129\ivdata_faro\output\im4.png')))/256.0;
-flow = (double(imread('C:\Users\hirat\Desktop\0129\ivdata_kitti\output\0000000325.png')))/256.0;
-
-depth = (double(imread('C:\Users\hirat\Desktop\0129\velodyne_raw\image_02\im4.png')))/256.0;
-depth = (double(imread('C:\Users\hirat\Desktop\0129\ivdata_kitti\velodyne_raw\image_02\0000000325.png')))/256.0;
-
-velo_raw = (double(imread('C:\Users\hirat\Desktop\0129\ivdata_faro\velodyne_raw\image_02\im4.png')))/256.0;
-velo_raw = (double(imread('C:\Users\hirat\Desktop\0129\ivdata_kitti\velodyne_raw\image_02\0000000325.png')))/256.0;
-
-sem = im2double(rgb2gray(imread('C:\Users\hirat\Desktop\0129\ivdata_faro\semantic\sem4.png')));
-sem = im2double(rgb2gray(imread('C:\Users\hirat\Desktop\0129\ivdata_kitti\semantic\0000000325.png')));
-
 
 [M_raw,N_raw] = size(velo_raw);
 velo = zeros(M_raw*N_raw,3);
