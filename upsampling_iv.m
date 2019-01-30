@@ -1,9 +1,9 @@
 %input image
 function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder)
     %% faro
-    fname = 'im4';
-    semanticName = 'sem4';
-    mainfolder = 'h:/data_ivdata/';
+%     fname = 'im4';
+%     semanticName = 'sem4';
+%     mainfolder = 'h:/data_ivdata/';
 
     %% kitti
     % fname = '0000000325';
