@@ -513,7 +513,7 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
         end
     end
     
-    resultProp = ours_norm;
+    resultProp = result;
 
 %     figure;
 %     imshow(result,[5 30]); title('Result Propagation');
