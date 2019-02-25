@@ -25,6 +25,7 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
     grad_x = imfilter(gray_, G_x, 'replicate');
     grad_y = imfilter(gray_, G_y, 'replicate');
     grad = sqrt(grad_x.^2 + grad_y.^2);
+    
 
     [M_raw,N_raw] = size(velo_raw);
     velo = zeros(M_raw*N_raw,3);
