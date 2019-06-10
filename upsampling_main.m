@@ -20,6 +20,26 @@ clear all
 % end
 
 %% faro
+%kk = [12 8 18 29 35 47];
+kk = 12;
+for j=1:1
+    k = kk(j);
+    disp(k);
+    fname = strcat('im',int2str(k));
+    semanticName = strcat('sem',int2str(k));  
+    mainfolder = 'h:/data_ivdata/';
+    %[resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder);
+    [resultProp, resultOpt] = upsampling_pp(fname, semanticName, mainfolder);
+    
+    imwrite(uint16(resultProp*256), strcat(mainfolder, 'output/upsampling_eachterm/pp', int2str(k), 'p.png'));
+    imwrite(uint16(resultOpt*256), strcat(mainfolder, 'output/upsampling_eachterm/pp', int2str(k), '.png'));
+    
+    %vis
+    %resultPropJet = ind2rgb(normalization(resultProp,'default', 40.0, 0.0), jet(256));
+    
+end
+
+%% SAVING PER FRAME PROPAGATION
 % kk = [12 8 18 29 35 47];
 % for j=1:1
 %     k = kk(j);
@@ -27,7 +47,7 @@ clear all
 %     fname = strcat('im',int2str(k));
 %     semanticName = strcat('sem',int2str(k));  
 %     mainfolder = 'h:/data_ivdata/';
-%     [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder);
+%     [resultProp, resultOpt] = upsampling_iv_save(fname, semanticName, mainfolder);
 %     
 %     imwrite(uint16(resultProp*256), strcat(mainfolder, 'output/upsampling_video/im', int2str(k), 'p.png'));
 %     imwrite(uint16(resultOpt*256), strcat(mainfolder, 'output/upsampling_video/im', int2str(k), '.png'));
@@ -36,21 +56,3 @@ clear all
 %     %resultPropJet = ind2rgb(normalization(resultProp,'default', 40.0, 0.0), jet(256));
 %     
 % end
-
-%% SAVING PER FRAME PROPAGATION
-kk = [12 8 18 29 35 47];
-for j=1:1
-    k = kk(j);
-    disp(k);
-    fname = strcat('im',int2str(k));
-    semanticName = strcat('sem',int2str(k));  
-    mainfolder = 'h:/data_ivdata/';
-    [resultProp, resultOpt] = upsampling_iv_save(fname, semanticName, mainfolder);
-    
-    imwrite(uint16(resultProp*256), strcat(mainfolder, 'output/upsampling_video/im', int2str(k), 'p.png'));
-    imwrite(uint16(resultOpt*256), strcat(mainfolder, 'output/upsampling_video/im', int2str(k), '.png'));
-    
-    %vis
-    %resultPropJet = ind2rgb(normalization(resultProp,'default', 40.0, 0.0), jet(256));
-    
-end

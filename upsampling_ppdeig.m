@@ -1,9 +1,9 @@
 %input image
-function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder)
+function [resultProp, resultOpt] = upsampling_ppdeig(fname, semanticName, mainfolder)
     %% faro
-    fname = 'im4';
-    semanticName = 'sem4';
-    mainfolder = 'h:/data_ivdata/';
+%     fname = 'im4';
+%     semanticName = 'sem4';
+%     mainfolder = 'h:/data_ivdata/';
 
     %% kitti
     % fname = '0000000325';
@@ -25,6 +25,7 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
     grad_x = imfilter(gray_, G_x, 'replicate');
     grad_y = imfilter(gray_, G_y, 'replicate');
     grad = sqrt(grad_x.^2 + grad_y.^2);
+    
 
     [M_raw,N_raw] = size(velo_raw);
     velo = zeros(M_raw*N_raw,3);
@@ -141,29 +142,29 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
 
                     sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 1;
                     count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 1;
-                    if sem(i,j) > 0.27 && sem(i,j) < 0.28
-                        sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 10;
-                        count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 10;
-                    end
+%                     if sem(i,j) > 0.27 && sem(i,j) < 0.28
+%                         sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                         count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                     end
 
 
-                    if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
-                        if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-                            sum_ = sum_ + (velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01))) * 1;
-                            count_ = count_ + (100 * gs * gr*(1.0/(gmax_+0.01))) * 1;
-                            if sem(i,j) > 0.27 && sem(i,j) < 0.28
-                                sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 10;
-                                count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 10;
-                            end
-                        end
-                        if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-
-                            if sem(i,j) > 0.352 && sem(i,j) < 0.353
-                                sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 100;
-                                count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 100;
-                            end
-                        end
-                    end
+%                     if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
+%                         if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+%                             sum_ = sum_ + (velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01))) * 1;
+%                             count_ = count_ + (100 * gs * gr*(1.0/(gmax_+0.01))) * 1;
+%                             if sem(i,j) > 0.27 && sem(i,j) < 0.28
+%                                 sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 10;
+%                                 count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                             end
+%                         end
+%                         if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+% 
+%                             if sem(i,j) > 0.352 && sem(i,j) < 0.353
+%                                 sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 100;
+%                                 count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 100;
+%                             end
+%                         end
+%                     end
                     gmax_ = 0;
                 end
             end
@@ -241,12 +242,12 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
 
                         sum_ = sum_ + velo(k,1) * gs * gr*(1.0/(gmax_+0.01));
                         count_ = count_ + gs * gr*(1.0/(gmax_+0.01));
-                        if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
-                            if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-                                sum_ = sum_ + velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01));
-                                count_ = count_ + 100 * gs * gr*(1.0/(gmax_+0.01));
-                            end
-                        end
+%                         if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
+%                             if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+%                                 sum_ = sum_ + velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01));
+%                                 count_ = count_ + 100 * gs * gr*(1.0/(gmax_+0.01));
+%                             end
+%                         end
                         gmax_ = 0;
                     end
                 end
@@ -362,29 +363,29 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
 
                     sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 1;
                     count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 1;
-                    if sem(i,j) > 0.27 && sem(i,j) < 0.28
-                        sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 10;
-                        count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 10;
-                    end
+%                     if sem(i,j) > 0.27 && sem(i,j) < 0.28
+%                         sum_ = sum_ + (velo(k,1) * gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                         count_ = count_ + (gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                     end
 
 
-                    if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
-                        if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-                            sum_ = sum_ + (velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01))) * 1;
-                            count_ = count_ + (100 * gs * gr*(1.0/(gmax_+0.01))) * 1;
-                            if sem(i,j) > 0.27 && sem(i,j) < 0.28
-                                sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 10;
-                                count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 10;
-                            end
-                        end
-                        if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-
-                            if sem(i,j) > 0.352 && sem(i,j) < 0.353
-                                sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 100;
-                                count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 100;
-                            end
-                        end
-                    end
+%                     if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
+%                         if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+%                             sum_ = sum_ + (velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01))) * 1;
+%                             count_ = count_ + (100 * gs * gr*(1.0/(gmax_+0.01))) * 1;
+%                             if sem(i,j) > 0.27 && sem(i,j) < 0.28
+%                                 sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 10;
+%                                 count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 10;
+%                             end
+%                         end
+%                         if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+% 
+%                             if sem(i,j) > 0.352 && sem(i,j) < 0.353
+%                                 sum_ = sum_ + (velo(k,1)*10*gs*gr*(1.0/(gmax_+0.01))) * 100;
+%                                 count_ = count_ + (10 * gs * gr*(1.0/(gmax_+0.01))) * 100;
+%                             end
+%                         end
+%                     end
                     gmax_ = 0;
                 end
             end
@@ -456,12 +457,12 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
 
                         sum_ = sum_ + velo(k,1) * gs * gr*(1.0/(gmax_+0.01));
                         count_ = count_ + gs * gr*(1.0/(gmax_+0.01));
-                        if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
-                            if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
-                                sum_ = sum_ + velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01));
-                                count_ = count_ + 100 * gs * gr*(1.0/(gmax_+0.01));
-                            end
-                        end
+%                         if (velo_pos(k,1) >= 1) && (velo_pos(k,1) < N) && (velo_pos(k,2) >= 1) && (velo_pos(k,2) < M)
+%                             if sem(i,j) == sem(round(velo_pos(k,2)),round(velo_pos(k,1)))
+%                                 sum_ = sum_ + velo(k,1)*100*gs*gr*(1.0/(gmax_+0.01));
+%                                 count_ = count_ + 100 * gs * gr*(1.0/(gmax_+0.01));
+%                             end
+%                         end
                         gmax_ = 0;
                     end
                 end
@@ -508,12 +509,12 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
             if i > pointBot(j,1)
                 result(i,j) = ours(i,j);
             else
-                result(i,j) = ours(i,j)*(i/pointBot(j,1))*(i/pointBot(j,1)) + flow(i,j)*(1-(i/pointBot(j,1))*(i/pointBot(j,1)));
+                result(i,j) = ours(i,j);%*(i/pointBot(j,1))*(i/pointBot(j,1)) + flow(i,j)*(1-(i/pointBot(j,1))*(i/pointBot(j,1)));
             end
         end
     end
     
-    resultProp = ours_norm;
+    resultProp = result;
 
 %     figure;
 %     imshow(result,[5 30]); title('Result Propagation');
