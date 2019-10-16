@@ -24,8 +24,9 @@ Miscellaneous:
 * flownet2, flownet2_CSS - optical flow (for reference only)
 * result_ours - our results for reference
 
-| RGB | Semantic Segmentation |
+|     |     |
 | --- | --- |
+| RGB | Semantic Segmentation |
 | ![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png) | ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png) |
 | Motion Stereo | LIDAR |
 | ![Motion stereo](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/motionstereo.png) | ![LIDAR](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/lidar.png) |
