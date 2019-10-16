@@ -24,22 +24,15 @@ Miscellaneous:
 * flownet2, flownet2_CSS - optical flow (for reference only)
 * result_ours - our results for reference
 
-
-| --- | --- |
 | RGB | Semantic Segmentation |
+| --- | --- |
 | ![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png) | ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png) |
-Semantic segmentation
-![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png)
-Motion stereo
-![Motion stereo](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/motionstereo.png)
-LIDAR
-![LIDAR](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/lidar.png)
-Ground truth depth
-![Ground truth depth](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/gtdepth.png)
-Result-propagation
-![Result-propagation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/propagation.png)
-Result-optimization
-![Result-optimization](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/optimization.png)
+| Motion Stereo | LIDAR |
+| ![Motion stereo](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/motionstereo.png) | ![LIDAR](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/lidar.png) |
+| Ground truth depth |
+| ![Ground truth depth](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/gtdepth.png) |
+| Result - Propagation | Result - Optimization |
+| ![Result-propagation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/propagation.png) | ![Result-optimization](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/optimization.png) |
 
 ## Building Instructions
 Sample program is in upsampling_main.m.
