@@ -25,8 +25,8 @@ Miscellaneous:
 * result_ours - our results for reference
 
 
-| RGB | Semantic Segmentation |
 | --- | --- |
+| RGB | Semantic Segmentation |
 | ![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png) | ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png) |
 Semantic segmentation
 ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png)
