@@ -8,7 +8,7 @@ Atsuki Hirata, Ryoichi Ishikawa, Menandro Roxas, Takeshi Oishi. "[Real-Time Dens
 1. Tested on MATLAB R2019a
 
 ## Dataset
-Our dataset can be accessed from: [dataset](b2.cvl.iis.u-tokyo.ac.jp/~roxas/data_iros2019_open.zip). There are 56 image pairs with ground truth depth, simulated LIDAR data, semantic segmentation results from [ICNET](https://github.com/hellochick/ICNet-tensorflow), [motion stereo](https://github.com/menandro/Reconflow) and additional [flownet2](https://github.com/lmb-freiburg/flownet2) optical flow for reference. We also provided manually segmented images.
+Our dataset can be accessed from: [dataset](https://b2.cvl.iis.u-tokyo.ac.jp/~roxas/data_iros2019_open.zip). There are 56 image pairs with ground truth depth, simulated LIDAR data, semantic segmentation results from [ICNET](https://github.com/hellochick/ICNet-tensorflow), [motion stereo](https://github.com/menandro/Reconflow) and additional [flownet2](https://github.com/lmb-freiburg/flownet2) optical flow for reference. We also provided manually segmented images.
 
 Folder Structure:
 calib - intrinsic camera matrix K, and transformation R, t between first->second image frames in OpenCV format .xml 
