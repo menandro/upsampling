@@ -42,6 +42,9 @@ Result-optimization
 ## Building Instructions
 Sample program is in upsampling_main.m.
 
+## Result on KITTI
+![kitti](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.png)
+
 ## To Do
 1. Release C++/CUDA codes.
 
