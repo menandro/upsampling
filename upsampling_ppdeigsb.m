@@ -1,5 +1,5 @@
 %input image
-function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder)
+function [resultProp, resultOpt] = upsampling_ppdeigsb(fname, semanticName, mainfolder)
     %% faro
 %     fname = 'im4';
 %     semanticName = 'sem4';
@@ -11,8 +11,8 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
 
 
     gray = im2double(rgb2gray(imread(strcat(mainfolder, 'image_02/data/', fname, '.png'))));
-    flow = double(imread(strcat(mainfolder, 'output/depth/', fname, '.png')))/256.0;
-    depth = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
+    %flow = double(imread(strcat(mainfolder, 'output/depth/', fname, '.png')))/256.0;
+    %depth = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
     velo_raw = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
     sem = im2double(rgb2gray(imread(strcat(mainfolder, 'semantic/', semanticName, '.png'))));
 
