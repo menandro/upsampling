@@ -24,8 +24,9 @@ Miscellaneous:
 * flownet2, flownet2_CSS - optical flow (for reference only)
 * result_ours - our results for reference
 
+
 RGB
-![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png)
+![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png) | ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png)
 Semantic segmentation
 ![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png)
 Motion stereo
@@ -42,10 +43,8 @@ Result-optimization
 ## Building Instructions
 Sample program is in upsampling_main.m.
 
-## Result on KITTI
- <video width="1280" height="720" controls>
-  <source src="http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4">
-</video> 
+## Sample Result on KITTI
+![Video](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4)
 
 ## To Do
 1. Release C++/CUDA codes.
