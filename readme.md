@@ -38,7 +38,7 @@ Miscellaneous:
 Sample program is in upsampling_main.m.
 
 ## Sample Result on KITTI
-![Video](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4)
+[Video](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4)
 
 ## To Do
 1. Release C++/CUDA codes.
