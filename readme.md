@@ -27,7 +27,7 @@ Miscellaneous:
 RGB
 ![RGB](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/image.png)
 Semantic segmentation
-![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png | width=100)
+![Semantic segmentation](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/semantic.png =310x94)
 Motion stereo
 ![Motion stereo](http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/motionstereo.png)
 LIDAR
