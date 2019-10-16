@@ -43,9 +43,7 @@ Result-optimization
 Sample program is in upsampling_main.m.
 
 ## Result on KITTI
- <video width="1280" height="720" controls>
-  <source src="http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4" type="video/mp4">
-Your browser does not support the video tag.
+ <video src="http://b2.cvl.iis.u-tokyo.ac.jp/~roxas/iros2019resultgithub.mp4" width="1280" height="720" controls>
 </video> 
 
 ## To Do
