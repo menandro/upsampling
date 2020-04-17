@@ -1,5 +1,5 @@
 %input image
-function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder)
+function [resultProp, resultOpt] = upsampling_ivnoms(fname, semanticName, mainfolder)
     %% faro
 %     fname = 'im4';
 %     semanticName = 'sem4';
@@ -9,7 +9,7 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
     % fname = '0000000325';
     % mainfolder = 'data_kitti_raw/2011_09_26/2011_09_26_drive_0093_sync/';
 
-    windowRadius = 30;
+    windowRadius = 10;
     gray = im2double(rgb2gray(imread(strcat(mainfolder, 'image_02/data/', fname, '.png'))));
     flow = double(imread(strcat(mainfolder, 'output/depth/', fname, '.png')))/256.0;
     depth = double(imread(strcat(mainfolder, 'proj_depth/velodyne_raw/image_02/', fname, '.png')))/256.0;
@@ -491,29 +491,30 @@ function [resultProp, resultOpt] = upsampling_iv(fname, semanticName, mainfolder
     end
 
 
-    pointBot = zeros(N,1);
-    pointBot_ = 0;
-    for i = 1:N
-        for j = M:-1:1
-            if pointMap(j,i) == 1
-                pointBot_ = j;
-            end
-        end
-        pointBot(i,1) = pointBot_ + windowRadius;
-        pointBot_ = 0;
-    end
-
-    result = zeros(M,N);
-    for j = 1:N
-        for i = M:-1:1
-            if i > pointBot(j,1)
-                result(i,j) = ours(i,j);
-            else
-                result(i,j) = ours(i,j)*(i/pointBot(j,1))*(i/pointBot(j,1)) + flow(i,j)*(1-(i/pointBot(j,1))*(i/pointBot(j,1)));
-            end
-        end
-    end
+%     pointBot = zeros(N,1);
+%     pointBot_ = 0;
+%     for i = 1:N
+%         for j = M:-1:1
+%             if pointMap(j,i) == 1
+%                 pointBot_ = j;
+%             end
+%         end
+%         pointBot(i,1) = pointBot_ + windowRadius;
+%         pointBot_ = 0;
+%     end
+% 
+%     result = zeros(M,N);
+%     for j = 1:N
+%         for i = M:-1:1
+%             if i > pointBot(j,1)
+%                 result(i,j) = ours(i,j);
+%             else
+%                 result(i,j) = ours(i,j)*(i/pointBot(j,1))*(i/pointBot(j,1)) + flow(i,j)*(1-(i/pointBot(j,1))*(i/pointBot(j,1)));
+%             end
+%         end
+%     end
     
+    result = ours;
     resultProp = result;
 
 %     figure;

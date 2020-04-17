@@ -1,61 +1,6 @@
-%   TGV2-L2 Depth Image Upsampling
-%
-%   Author: David Ferstl
-%
-%   If you use this file or package for your work, please refer to the
-%   following papers:
-% 
-%   [1] David Ferstl, Christian Reinbacher, Rene Ranftl, Matthias Rüther 
-%       and Horst Bischof, Image Guided Depth Upsampling using Anisotropic
-%       Total Generalized Variation, ICCV 2013.
-%
-%   License:
-%     Copyright (C) 2013 Institute for Computer Graphics and Vision,
-%                      Graz University of Technology
-% 
-%     This program is free software; you can redistribute it and/or modify
-%     it under the terms of the GNU General Public License as published by
-%     the Free Software Foundation; either version 3 of the License, or
-%     (at your option) any later version.
-% 
-%     This program is distributed in the hope that it will be useful,
-%     but WITHOUT ANY WARRANTY; without even the implied warranty of
-%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-%     GNU General Public License for more details.
-% 
-%     You should have received a copy of the GNU General Public License
-%     along with this program.  If not, see
-%     <http://www.gnu.org/licenses/>.
-%
-%UPSAMPLINGTENSORTGVL2_MAT function for depth image upsampling
-%   [ U ] = UPSAMPLINGTENSORTGVL2_MAT( U_INIT, DEPTH, WEIGHT, GRAY, 
-%               TENSOR, TGV_ALPHA, L, MAXITS, CHECK, TOL, VERBOSE )
-%       returns a upsampled depht image according to its imput parameters
-%
-%   [IN]
-%       U_INIT ...    Initial upsampling solution (a good
-%                       initial solution will reduce the number 
-%                       of iterations until convergence)
-%       DEPTH ...       Sparse input depth image
-%       WEIGHT ...    Weights according to the input depth vales 
-%                       (lambda.*w)
-%       GRAY ...      High Resolution intensity image for anisotropic 
-%                       regularization
-%       TENSOR ...    Anisotropic Tensor parameters [beta, gamma]
-%       TGV_ALPHA ... TGV weighting parameters [alpha0, alpha1]
-%       L ...         Timestep Lambda to adjust convergence rate (usually 1)
-%       MAXITS ...    Number of iterations
-%       CHECK ...     Check solution every CHECK iterations for convergence
-%       TOL ...       Tolerance to define convergence
-%       VERBOSE ...   Generate additional output [ TRUE/FALSE ]  
-%   [OUT]
-%       U ...         Final Upsampling solution
-
-function [ u ] = upsamplingTensorTGVL2( u_init, d, w, gray, tensor_ab, tgv_alpha, l, maxits, check, tol, verbose )
-   
+function [ u ] = upsamplingTensorTGVL2_iros2020( u_init, d, w, gray, tensor_ab, alpha0, alpha1, l, maxits, check, tol, verbose )
+    
     [M, N] = size(gray);
-    alpha0 = tgv_alpha(1);
-    alpha1 = tgv_alpha(2);
     
     % initial time-steps
     tau = 1;
@@ -71,10 +16,6 @@ function [ u ] = upsamplingTensorTGVL2( u_init, d, w, gray, tensor_ab, tgv_alpha
     a = tensor{1};
     b = tensor{2};
     c = tensor{3};
-%     imshow(a);
-%     figure, imshow(b);
-%     figure, imshow(c);
-%     pause();
     
     
     eta_u = (a.^2 + b.^2 + 2*c.^2 + (a+c).^2 + (b+c).^2).*(alpha1.^2) + 0*w.^2;
@@ -104,7 +45,6 @@ function [ u ] = upsamplingTensorTGVL2( u_init, d, w, gray, tensor_ab, tgv_alpha
     end
     
     for k = 0:maxits
-    
         disp(sprintf('current iter %d', k));
         % update timesteps
         if(sigma < 1000)
@@ -121,8 +61,8 @@ function [ u ] = upsamplingTensorTGVL2( u_init, d, w, gray, tensor_ab, tgv_alpha
         du_tensor_x = a.*u_x + c.*u_y; 
         du_tensor_y = c.*u_x + b.*u_y;
 
-        p(:,:,1) = p(:,:,1) + alpha1*sigma/eta_p.*du_tensor_x;
-        p(:,:,2) = p(:,:,2) + alpha1*sigma/eta_p.*du_tensor_y;
+        p(:,:,1) = p(:,:,1) + alpha1.*sigma/eta_p.*du_tensor_x;
+        p(:,:,2) = p(:,:,2) + alpha1.*sigma/eta_p.*du_tensor_y;
 
         % projection
         reprojection = max(1.0, sqrt(p(:,:,1).^2 + p(:,:,2).^2));
@@ -185,7 +125,6 @@ function [ u ] = upsamplingTensorTGVL2( u_init, d, w, gray, tensor_ab, tgv_alpha
         tau = tau*mu;
         
         if mod(k, check) == 0
-            
             imshow(6.3672./u, [0 40], 'ColorMap', jet);
 %             if(verbose > 0)
 %                 subplot(241), imshow(d, [0 1]); title(sprintf('inputD %u x %u ', M, N)); drawnow;
